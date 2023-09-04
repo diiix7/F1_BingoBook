@@ -17,7 +17,7 @@ export default function App() {
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="HomePage" component={HomePage} />
-        {/* Ajoutez d'autres écrans ici */}
+        {/* Autres écrans ici */}
       </Stack.Navigator>
     </NavigationContainer>
   );

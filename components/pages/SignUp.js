@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,7 +8,7 @@ const SignUp = () => {
   const navigation = useNavigation();
 
   const handleContinue = () => {
-    navigation.navigate('SignUp');
+    navigation.navigate('SignIn');
   };
 
   const [name, setName] = useState('');
