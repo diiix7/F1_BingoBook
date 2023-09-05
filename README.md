@@ -23,8 +23,8 @@ This repository contains the backend for the F1BingoBook application, a sports b
 
     Create a .env file at the project's root and configure the necessary environment variables, such as MongoDB configuration and secret keys.
     
-    ```MONGODB_URI=your-mongodb-uri
-    SECRET_KEY=your-secret-key```
+    ```MONGODB_URI=your-mongodb-uri```
+    ```SECRET_KEY=your-secret-key```
 
 4. Starting the Server
     To start the server, use the following command:
