@@ -39,7 +39,7 @@ The backend exposes several API routes for the React Native application:
 
 1. /api/user/signup: Allows users to sign up.
 
-2 ./api/user/signin: Allows users to sign in.
+2. /api/user/signin: Allows users to sign in.
 
 3. More to come
 
