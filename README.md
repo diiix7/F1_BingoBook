@@ -50,9 +50,19 @@ Refer to the backend source code for more details on each route.
 Contributions are welcome! If you want to contribute to this project, make sure to follow these steps:
 
 1. Fork this repository.
-2. Create a branch for your feature (git checkout -b feature/feature-name).
-3 .Commit your changes (git commit -m 'Add new feature').
-4. Push your branch (git push origin feature/feature-name).
+
+2. Create a branch for your feature:
+
+```git checkout -b feature/feature-name```
+
+3 .Commit your changes:
+
+```git commit -m 'Add new feature)```
+
+4. Push your branch:
+
+```git push origin feature/feature-name)```
+
 5. Open a Pull Request to the main branch of this repository.
 
 
