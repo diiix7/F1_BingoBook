@@ -10,31 +10,35 @@ const signUpUser = async (req, res) => {
     const hash = await bcrypt.hash(password, 8)
 
     await User.create({...req.body, password: hash})
-    res.status(201).send('Sucessfully account opened ')
+    res.status(201).send('Account successfully created')
     return
   } catch (err) {
-    console.log('Eorror : ', err)
-    sendResponseError(500, 'Something wrong please try again', res)
+    console.log('Error : ', err)
+    sendResponseError(500, 'Something went wrong, please try again !', res)
     return
   }
 }
 
 const signInUser = async (req, res) => {
-  const {email, password} = req.body
-  console.log(req.body)
+  const {email, password} = req.body    
   try {
     const user = await User.findOne({email})
-    if (!!!user) {
+    if (!user) {
       sendResponseError(400, 'You have to Sign up first !', res)
     }
-
-    const same = await checkPassword(password, user.password)
-    if (same) {
-      let token = newToken(user)
-      res.status(200).send({status: 'ok', token})
-      return
+    else{
+      const same = await checkPassword(password, user.password)
+      if (same) {
+        let token = newToken(user)
+        res.status(200).send({status: 'ok', token})
+        return
+      }
+      else {
+        return res.status(401).json({ error: 'Invalid password' });
+      }
+      
+      sendResponseError(400, 'Invalid password !', res)
     }
-    sendResponseError(400, 'Invalid password !', res)
   } catch (err) {
     console.log('EROR', err)
     sendResponseError(500, `Error ${err}`, res)
