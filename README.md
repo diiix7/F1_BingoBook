@@ -11,24 +11,25 @@ This repository contains the backend for the F1BingoBook application, a sports b
 
 1. Clone this repository to your local machine:
 
-   ```git clone https://github.com/LoickAdjiwanou/F1BingoBook-backend.git
+   ```git clone https://github.com/LoickAdjiwanou/F1BingoBook-backend.git```
 
 2. Install project dependencies:
 
-    ```cd F1BingoBook-backend
-    ```npm install
+    ```cd F1BingoBook-backend```
+
+    ```npm install```
 
 3. Set up environment variables:
 
     Create a .env file at the project's root and configure the necessary environment variables, such as MongoDB configuration and secret keys.
     
     ```MONGODB_URI=your-mongodb-uri
-    ```SECRET_KEY=your-secret-key
+    SECRET_KEY=your-secret-key```
 
 4. Starting the Server
     To start the server, use the following command:
 
-    ```npm start
+    ```npm start```
 
 The server will run on the default port 3000.
 
