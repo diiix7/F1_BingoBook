@@ -55,7 +55,7 @@ Contributions are welcome! If you want to contribute to this project, make sure 
 
 ```git checkout -b feature/feature-name```
 
-3 .Commit your changes:
+3. Commit your changes:
 
 ```git commit -m 'Add new feature)```
 
