@@ -36,7 +36,7 @@ const signInUser = async (req, res) => {
       else {
         return res.status(401).json({ error: 'Invalid password' });
       }
-      
+
       sendResponseError(400, 'Invalid password !', res)
     }
   } catch (err) {
@@ -48,4 +48,5 @@ const signInUser = async (req, res) => {
 const getUser = async (req, res) => {
   res.status(200).send({user: req.user})
 }
+
 module.exports = {signUpUser, signInUser, getUser}
