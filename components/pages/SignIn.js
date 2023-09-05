@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Alert, View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import LogoF1 from '../../assets/images/F1logo.png';
@@ -11,28 +11,42 @@ const SignIn = () => {
     navigation.navigate('SignUp');
   };
 
-  const [email, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const host = 'http://127.0.0.1:3000/api/user/signin';
+  //Pour la version web
+  //const host = 'http://127.0.0.1:3000/api/user/signin';
+
+  //Pour la version mobile iOS / Android
+  const host = 'http://192.168.0.162:3000/api/user/signin';
 
   const handleSignIn = async () => {
     try {
-      const response = await fetch({host}, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      if (!email || !password){
+        Alert.alert('Something went wrong', 'Fill the fields correctly !');  
+      }
+      else {
+        const response = await fetch(host, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
 
-      if (response.ok) {
-        const { token } = await response.json();
-      } else {
-        //
+        if (response.ok) {
+          const { token } = await response.json();
+          Alert.alert('Connected successfully');
+          navigation.navigate('HomePage');
+        }else {
+          const errorData = await response.json();
+          //console.error('Connection error:', errorData);
+          Alert.alert('Connection error', 'Create an account first or check your credentials');
+        }
       }
     } catch (error) {
-      console.error('Erreur lors de la connexion:', error);
+      //console.error('Connection error:', error);
+      Alert.alert('Connection error', 'Create an account first or check your credentials');
     }
   };
 

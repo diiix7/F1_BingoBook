@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Alert, View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import LogoF1 from '../../assets/images/F1logo.png';
@@ -15,25 +15,38 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const host = 'http://127.0.0.1:3000/api/user/signup';
+  //Pour la version web
+  //const host = 'http://127.0.0.1:3000/api/user/signin';
 
+  //Pour la version mobile iOS / Android
+  const host = 'http://192.168.0.162:3000/api/user/signup';
+  
   const handleSignUp = async () => {
     try {
-      const response = await fetch({host}, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
+      if (!name || !email || !password){
+        Alert.alert('Something went wrong', 'Fill the fields correctly !');  
+      }
+      else{
+        const response = await fetch(host, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, password }),
+        });
 
-      if (response.ok) {
-
-      } else {
-        //
+        if (response.ok) {
+          Alert.alert('Account created successfully', 'Now connect to your account');
+          navigation.navigate('SignIn');
+        } else {
+          const errorData = await response.json();
+          //console.error('Error while registering:', errorData);
+          Alert.alert('Connection error', 'Incorrect credentials', 'Try again');
+        }
       }
     } catch (error) {
-      console.error('Erreur lors de la connexion:', error);
+      //console.error('Error while registering:', error);
+      Alert.alert('Connection error', 'Incorrect credentials', 'Try again');
     }
   };
 
